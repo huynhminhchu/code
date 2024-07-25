@@ -5,6 +5,7 @@ value:
 .section .text
 .globl _start
 _start:
+  nop 
   movl value, %ecx
   movl $1, %eax
   movl $0, %ebx

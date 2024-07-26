@@ -2,10 +2,12 @@
 
 typedef char src_t;
 typedef int dest_t;
-int main(int argc, char *argv[]) {
+void do_something() {
   src_t v;
   dest_t *p;
 
   v = 'A';
   *p = 10;
+  printf("Hello from function.\n");
 }
+int main(int argc, char *argv[]) { printf("Hello from main.\n"); }

@@ -19,9 +19,11 @@ do_something:
 	.cfi_offset 3, -12
 	call	__x86.get_pc_thunk.ax
 	addl	$_GLOBAL_OFFSET_TABLE_, %eax
-	movb	$65, -13(%ebp)
-	movl	-12(%ebp), %edx
-	movl	$10, (%edx)
+	movl	8(%ebp), %edx
+	movb	%dl, -12(%ebp)
+	movsbl	-12(%ebp), %ecx
+	movl	12(%ebp), %edx
+	movl	%ecx, (%edx)
 	subl	$12, %esp
 	leal	.LC0@GOTOFF(%eax), %edx
 	pushl	%edx
@@ -58,12 +60,21 @@ main:
 	pushl	%ecx
 	.cfi_escape 0xf,0x3,0x75,0x78,0x6
 	.cfi_escape 0x10,0x3,0x2,0x75,0x7c
-	call	__x86.get_pc_thunk.ax
-	addl	$_GLOBAL_OFFSET_TABLE_, %eax
+	subl	$16, %esp
+	call	__x86.get_pc_thunk.bx
+	addl	$_GLOBAL_OFFSET_TABLE_, %ebx
+	movb	$65, -13(%ebp)
+	movl	-12(%ebp), %eax
+	movl	$10, (%eax)
+	movsbl	-13(%ebp), %eax
+	subl	$8, %esp
+	pushl	-12(%ebp)
+	pushl	%eax
+	call	do_something
+	addl	$16, %esp
 	subl	$12, %esp
-	leal	.LC1@GOTOFF(%eax), %edx
-	pushl	%edx
-	movl	%eax, %ebx
+	leal	.LC1@GOTOFF(%ebx), %eax
+	pushl	%eax
 	call	puts@PLT
 	addl	$16, %esp
 	movl	$0, %eax
@@ -92,5 +103,16 @@ __x86.get_pc_thunk.ax:
 	ret
 	.cfi_endproc
 .LFE2:
+	.section	.text.__x86.get_pc_thunk.bx,"axG",@progbits,__x86.get_pc_thunk.bx,comdat
+	.globl	__x86.get_pc_thunk.bx
+	.hidden	__x86.get_pc_thunk.bx
+	.type	__x86.get_pc_thunk.bx, @function
+__x86.get_pc_thunk.bx:
+.LFB3:
+	.cfi_startproc
+	movl	(%esp), %ebx
+	ret
+	.cfi_endproc
+.LFE3:
 	.ident	"GCC: (Ubuntu 13.2.0-23ubuntu4) 13.2.0"
 	.section	.note.GNU-stack,"",@progbits

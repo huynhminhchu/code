@@ -22,8 +22,10 @@ int main() {
     r = fgets(buffer, BSIZE, fp);
     if (r == NULL)
       break;
-    printf("%s", buffer);
-    printf("Size of buffer: %ld\n", strlen(buffer));
+
+    entry = (char *)malloc(sizeof(char) * strlen(buffer) + 1);
+    strcpy(entry, buffer);
+    printf("Entry: %s\n", entry);
   }
   fclose(fp);
 }

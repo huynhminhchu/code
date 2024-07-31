@@ -20,9 +20,11 @@ int main(int argc, char *argv[]) {
   }
   if (argv[1] != NULL)
     name = argv[1];
-  printf("%s!!!\n", name);
-  printf("Today is %d, %d %d, %d\n", clock->tm_wday, clock->tm_mday,
-         clock->tm_mday, clock->tm_year + 1900);
-  printf("It's %s", ctime(&now));
+  printf("%s!!!", name);
+
+  char time_string[64];
+  strftime(time_string, 64, "Today is %A, %B %d, %Y%nIt is %r%n", clock);
+  printf("!\n%s", time_string);
+
   return 0;
 }

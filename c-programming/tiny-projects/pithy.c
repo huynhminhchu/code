@@ -39,6 +39,12 @@ int main() {
       exit(1);
     }
     strcpy(entry, buffer);
+    if (items % 100 == 0) {
+      char **new_list_base = realloc(list_base, sizeof(char *) * (items + 100));
+      if (new_list_base != NULL) {
+        list_base = new_list_base;
+      }
+    }
     *(list_base + items) = entry;
     /* printf("d: %s", items, entry); */
     items++;

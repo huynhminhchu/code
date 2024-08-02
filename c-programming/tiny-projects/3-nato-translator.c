@@ -13,7 +13,6 @@
 #define BUFSIZE 256
 
 int char_to_ascii(char c) {
-  printf("Value: %d\n", (int)toupper(c));
   if (isalpha(c)) {
     return toupper((int)c) - 65;
   }
@@ -37,9 +36,12 @@ int main(int argc, char *argv[]) {
     // fgets will read a newline-terminated string
     printf("You entered: %s", buf);
     for (int i = 0; i < strlen(buf); i++) {
-      printf("Char %c: \n", buf[i]);
-      printf("Char value: %d\n", char_to_ascii(buf[i]));
+      int index = char_to_ascii(buf[i]);
+      if (index != -1) {
+        printf("%s ", nato[index]);
+      }
     }
+    printf("\n");
   }
   return 0;
 }

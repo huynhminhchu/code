@@ -12,7 +12,7 @@
 
 #define BUFSIZE 256
 
-int translate(char c) {
+int char_to_ascii(char c) {
   printf("Value: %d\n", (int)c);
   return (int)c - 65;
   // a -> return "Alfa";
@@ -28,12 +28,14 @@ int main(int argc, char *argv[]) {
   char buf[BUFSIZE];
   int length = sizeof(nato) / sizeof(char *);
 
-  translate('A');
   while (true) {
     printf("Input: ");
     fgets(buf, BUFSIZE, stdin);
     // fgets will read a newline-terminated string
     printf("You entered: %s", buf);
+    for (int i = 0; i < strlen(buf); i++) {
+      printf("Char %c: \t", buf[i]);
+    }
   }
   return 0;
 }

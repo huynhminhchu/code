@@ -17,6 +17,7 @@ int removeDuplicates(int* nums, int numsSize) {
                 break;
             }
         }
+        printf("j = %d\n", j);
         if (nums[i] == nums[i-1]){
             nums[i] = nums[j];
         }

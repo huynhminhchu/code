@@ -17,13 +17,15 @@ int removeDuplicates(int* nums, int numsSize) {
     printf("j=%d\n", j);
 
     for (int i = 1; i < numsSize; i++){
-        if (j + 1 == numsSize){
-            printf("break.\n");
-            break;
-        }
+        // if (j + 1 > numsSize){
+        //     printf("break.\n");
+        //     break;
+        // }
         count++;
         if (nums[i] <= nums[i-1]) {
             nums[i] = nums[j];
+            if (nums[i] == nums[numsSize - 1])
+                break;
             for (int k = j + 1; k < numsSize; k ++){
                 if (nums[k] > nums[j]){
                     j = k;
@@ -43,12 +45,12 @@ int removeDuplicates(int* nums, int numsSize) {
 
 int main()
 {
-    int a[10] = {0,0,1,1,2,2,2,3,3,4};
-    int b[3] = {1,1,2};
+    int a[10] = {-1,-1,1,1,2,2,2,3,3,4};
+    int b[] = {1,1};
     // int a[3] = {1,1,2};
     // int k = removeDuplicates(a, 3);
-    int k = removeDuplicates(a, 10);
-    // int k2= removeDuplicates(b, 3);
-    printf("k=%d\n", k);
-    // printf("k2=%d\n", k2);
+    // int k = removeDuplicates(a, 10);
+    int k2= removeDuplicates(b, 2);
+ //   printf("k=%d\n", k);
+    printf("k2=%d\n", k2);
 }

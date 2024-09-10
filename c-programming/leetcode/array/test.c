@@ -8,22 +8,22 @@ int removeDuplicates(int* nums, int numsSize) {
     int j = 1;
 
     int count = 1;
-    for (int i = 1; i < numsSize - 1; i++){
 
-        if (nums[j] > nums[i] && nums[j] > nums[i-1]){
+    for (j; j < numsSize; j++){
+        if (nums[j] > nums[1]){
             break;
         }
-        if (nums[i] <= nums[i-1]){
-            nums[i] = nums[j];
-
-            if (nums[i] < nums[numsSize - 1])
-                count++;
-        }
-        
     }
-    count++;
-    for (int i = 0 ; i < numsSize ; i++){
-        printf("%d\n",nums[i]);
+
+    for (int i = 1; i < numsSize - 1; i++){
+
+        if (nums[i] == nums[i-1]) {
+            nums[i] = j;
+            count++;
+        }
+        for (k = j; k < numsSize - 1; k ++){
+            
+        }
     }
 
 

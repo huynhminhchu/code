@@ -20,10 +20,11 @@ int removeDuplicates(int* nums, int numsSize) {
         if (nums[i] == nums[i-1]) {
             nums[i] = j;
             count++;
+            for (k = j; k < numsSize - 1; k ++){
+                
+            }
         }
-        for (k = j; k < numsSize - 1; k ++){
-            
-        }
+
     }
 
 

@@ -21,9 +21,7 @@ int removeDuplicates(int* nums, int numsSize) {
     for (int i = 1; i < numsSize; i++){
 
         count++;
-        if (nums[i] == nums[numsSize - 1]){
-            return count;
-        }
+
         if (nums[i] <= nums[i-1]) {
             nums[i] = nums[j];
             if (nums[i] == nums[numsSize - 1]){
@@ -37,6 +35,9 @@ int removeDuplicates(int* nums, int numsSize) {
             }
         }
     }
+
+    for (int i = 0; i < numsSize; i++)
+        printf("nums[%d] = %d\n", i, nums[i]);
     return count;
 }
 

@@ -7,8 +7,8 @@ int removeDuplicates(int* nums, int numsSize) {
     int index = 0;
     int j;
 
-
-    for (int i = 1; i < numsSize; i++){
+    int count = 1;
+    for (int i = 1; i < numsSize - 1; i++){
 
         int j = i + 1;
         for (j; j < numsSize; j++){
@@ -20,6 +20,7 @@ int removeDuplicates(int* nums, int numsSize) {
         printf("j = %d\n", j);
         if (nums[i] <= nums[i-1]){
             nums[i] = nums[j];
+            count++;
         }
 
     }
@@ -28,11 +29,14 @@ int removeDuplicates(int* nums, int numsSize) {
     }
 
 
-    return 0;
+    return count;
 }
 
 int main()
 {
     int a[10] = {0,0,1,1,1,2,2,3,3,4};
-    removeDuplicates(a, 10);
+    // int a[3] = {1,1,2};
+    // int k = removeDuplicates(a, 3);
+    int k = removeDuplicates(a, 10);
+    printf("k=%d\n", k);
 }
